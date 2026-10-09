@@ -22,7 +22,7 @@
                 <div class="bg-white border border-gray-200 shadow-sm rounded-lg px-4 py-2 mb-4 flex items-center justify-center">
                     <span class="text-xs font-bold tracking-widest text-blue-900">MIM</span>
                 </div>
-                <h1 class="text-xl font-bold text-gray-900 leading-snug">Reservasi Nutrisi Warehouse 1 FG</h1>
+                <h1 class="text-xl font-bold text-gray-900 leading-snug">Reservasi Nutrisi HRD-GA</h1>
                 <p class="text-xs text-gray-500 mt-1">Silakan masukkan NIK dan Nama Anda untuk melanjutkan</p>
             </div>
 
@@ -138,7 +138,8 @@
                 body: JSON.stringify(payload)
             })
             .then(() => {
-                alert('Data berhasil disimpan!');
+                alertBox.className = "alert alert-success py-2 small text-center mb-3";
+                alertBox.innerText = "Data berhasil diinput ke system!";
                 btn.disabled = false;
                 btn.innerText = 'KIRIM RESERVASI';
                 
