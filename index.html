@@ -6,66 +6,79 @@
     <title>Reservasi Nutrisi HRD-GA</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-md rounded-2xl shadow-xl p-8 border border-gray-100">
-        <!-- Header / Logo Section -->
-        <div class="text-center mb-6">
-            <h1 class="text-xl font-bold text-gray-800">Reservasi Nutrisi HRD-GA</h1>
-            <p class="text-xs text-gray-500 mt-1">Warehouse 1 Finished Goods</p>
+<body class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 min-h-screen flex flex-col items-center justify-between p-4">
+    
+    <div class="flex-grow flex items-center justify-center w-full">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl p-8 border border-gray-100">
+            
+            <!-- Logo & Header Section (Menyamai Asset PDA) -->
+            <div class="flex flex-col items-center text-center mb-6">
+                <div class="bg-white border border-gray-200 shadow-sm rounded-lg px-4 py-2 mb-4 flex items-center justify-center">
+                    <span class="text-xs font-bold tracking-widest text-blue-900">MIM</span>
+                </div>
+                <h1 class="text-xl font-bold text-gray-900 leading-snug">Reservasi Nutrisi Warehouse 1 FG</h1>
+                <p class="text-xs text-gray-500 mt-1">Silakan masukkan NIK dan Nama Anda untuk melanjutkan</p>
+            </div>
+
+            <!-- Form Login (NIK & NAMA) -->
+            <div id="loginSection">
+                <div class="mb-4 text-left">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">NIK Karyawan <span class="text-red-500">*</span></label>
+                    <input type="text" id="nikInput" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-900 focus:outline-none transition text-sm text-gray-800" placeholder="Contoh: 214006291">
+                </div>
+                <div class="mb-6 text-left">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Nama Karyawan <span class="text-red-500">*</span></label>
+                    <input type="text" id="namaInput" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-900 focus:outline-none transition text-sm text-gray-800" placeholder="Contoh: Budi Santoso">
+                </div>
+                <button onclick="handleLogin()" class="w-full bg-[#1b2a4a] hover:bg-blue-900 text-white font-bold py-3 rounded-xl shadow-lg transition duration-200 text-sm tracking-wide">MASUK</button>
+            </div>
+
+            <!-- Form Input Nutrisi (Hidden Default) -->
+            <div id="formSection" class="hidden text-left">
+                <div class="bg-blue-50 border border-blue-100 p-3 rounded-xl mb-5 flex justify-between items-center text-sm">
+                    <div>
+                        <p class="font-bold text-blue-900"><span id="displayName"></span></p>
+                        <p class="text-xs text-blue-700">NIK: <span id="displayNik"></span></p>
+                    </div>
+                    <button onclick="handleLogout()" class="text-xs text-red-600 hover:text-red-700 underline font-semibold">Keluar</button>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">Departemen <span class="text-red-500">*</span></label>
+                        <input type="text" id="departemenInput" class="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-900 focus:outline-none transition text-sm text-gray-800" placeholder="Masukkan Departemen">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">Milku Btl 200Ml Cok Prem</label>
+                        <input type="number" id="qtyCoklat" value="0" min="0" class="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-900 focus:outline-none transition text-sm text-gray-800">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">Milku Btl 200Ml Strawberry</label>
+                        <input type="number" id="qtyStraw" value="0" min="0" class="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-900 focus:outline-none transition text-sm text-gray-800">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">Milku Btl 200Ml Original</label>
+                        <input type="number" id="qtyOrig" value="0" min="0" class="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-900 focus:outline-none transition text-sm text-gray-800">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">AQUAVIVA</label>
+                        <input type="number" id="qtyAqua" value="0" min="0" class="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-900 focus:outline-none transition text-sm text-gray-800">
+                    </div>
+
+                    <button onclick="submitData()" id="submitBtn" class="w-full bg-[#1b2a4a] hover:bg-blue-900 text-white font-bold py-3 rounded-xl shadow-lg transition duration-200 text-sm tracking-wide mt-2">KIRIM RESERVASI</button>
+                </div>
+            </div>
+
         </div>
+    </div>
 
-        <!-- Form Login (NIK & NAMA) -->
-        <div id="loginSection">
-            <div class="mb-4">
-                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-2">NIK Karyawan</label>
-                <input type="text" id="nikInput" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition text-sm" placeholder="Masukkan NIK Anda">
-            </div>
-            <div class="mb-6">
-                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-2">Nama Karyawan</label>
-                <input type="text" id="namaInput" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition text-sm" placeholder="Masukkan Nama Lengkap">
-            </div>
-            <button onclick="handleLogin()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl shadow-md transition duration-200 text-sm">MASUK</button>
-        </div>
-
-        <!-- Form Input Nutrisi (Hidden Default) -->
-        <div id="formSection" class="hidden">
-            <div class="bg-blue-50 border border-blue-100 p-3 rounded-xl mb-5 flex justify-between items-center text-sm">
-                <div>
-                    <p class="font-bold text-blue-900"><span id="displayName"></span></p>
-                    <p class="text-xs text-blue-700">NIK: <span id="displayNik"></span></p>
-                </div>
-                <button onclick="handleLogout()" class="text-xs text-red-600 hover:text-red-700 underline font-semibold">Keluar</button>
-            </div>
-
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">Departemen</label>
-                    <input type="text" id="departemenInput" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition text-sm" placeholder="Masukkan Departemen">
-                </div>
-                
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">Milku Btl 200Ml Cok Prem</label>
-                    <input type="number" id="qtyCoklat" value="0" min="0" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition text-sm">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">Milku Btl 200Ml Strawberry</label>
-                    <input type="number" id="qtyStraw" value="0" min="0" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition text-sm">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">Milku Btl 200Ml Original</label>
-                    <input type="number" id="qtyOrig" value="0" min="0" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition text-sm">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">AQUAVIVA</label>
-                    <input type="number" id="qtyAqua" value="0" min="0" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition text-sm">
-                </div>
-
-                <button onclick="submitData()" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl shadow-md transition duration-200 text-sm mt-2">KIRIM RESERVASI</button>
-            </div>
-        </div>
+    <!-- Footer Copyright -->
+    <div class="text-center text-xs text-blue-200 mt-4 pb-2">
+        &copy; 2026 by Non FG Support
     </div>
 
     <script>
@@ -103,4 +116,32 @@
                 departemen: document.getElementById('departemenInput').value,
                 milkuCoklat: document.getElementById('qtyCoklat').value,
                 milkuStraw: document.getElementById('qtyStraw').value,
-                milkuOrig: document.getElementById('
+                milkuOrig: document.getElementById('qtyOrig').value,
+                aquaviva: document.getElementById('qtyAqua').value
+            };
+
+            // Masukkan URL Web App Google Apps Script Anda yang berakhiran /exec di bawah ini:
+            const WEB_APP_URL = 'PASTE_URL_WEB_APP_APPS_SCRIPT_ANDA_DI_SINI';
+
+            fetch(WEB_APP_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                alert('Data berhasil disimpan!');
+                btn.disabled = false;
+                btn.innerText = 'KIRIM RESERVASI';
+                
+                // Reset input item form
+                document.getElementById('departemenInput').value = '';
+                document.getElementById('qtyCoklat').value = '0';
+                document.getElementById('qtyStraw').value = '0';
+                document.getElementById('qtyOrig').value = '0';
+                document.getElementById('qtyAqua').value = '0';
+            })
+            .catch((error) => {
+                alert('Gagal menyimpan data: ' + error);
