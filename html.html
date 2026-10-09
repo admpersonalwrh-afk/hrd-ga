@@ -30,7 +30,7 @@
         <div id="formSection" class="hidden">
             <div class="bg-blue-50 p-3 rounded-lg mb-4 text-sm text-blue-800 flex justify-between items-center">
                 <div>
-                    <p font-semibold>Login: <span id="displayName" class="font-bold"></span></p>
+                    <p class="font-semibold">Login: <span id="displayName" class="font-bold"></span></p>
                     <p class="text-xs text-blue-600">NIK: <span id="displayNik"></span></p>
                 </div>
                 <button onclick="handleLogout()" class="text-xs text-red-600 underline font-medium">Keluar</button>
@@ -98,7 +98,7 @@
 
             const payload = {
                 nik: document.getElementById('displayNik').innerText,
-                nama: document.getElementById('displayName').innerText,
+                nama: document.getElementById('displayName'].innerText,
                 departemen: document.getElementById('departemenInput').value,
                 milkuCoklat: document.getElementById('qtyCoklat').value,
                 milkuStraw: document.getElementById('qtyStraw').value,
@@ -106,24 +106,34 @@
                 aquaviva: document.getElementById('qtyAqua').value
             };
 
-            google.script.run
-                .withSuccessHandler(function(response) {
-                    alert('Data berhasil disimpan!');
-                    btn.disabled = false;
-                    btn.innerText = 'KIRIM RESERVASI';
-                    // Reset input item
-                    document.getElementById('departemenInput').value = '';
-                    document.getElementById('qtyCoklat').value = '0';
-                    document.getElementById('qtyStraw').value = '0';
-                    document.getElementById('qtyOrig').value = '0';
-                    document.getElementById('qtyAqua').value = '0';
-                })
-                .withFailureHandler(function(error) {
-                    alert('Gagal menyimpan data: ' + error.message);
-                    btn.disabled = false;
-                    btn.innerText = 'KIRIM RESERVASI';
-                })
-                .simpanDataNutrisi(payload);
+            // Masukkan URL Web App Google Apps Script Anda yang berakhiran /exec di bawah ini:
+            const WEB_APP_URL = 'PASTE_URL_WEB_APP_APPS_SCRIPT_ANDA_DI_SINI';
+
+            fetch(WEB_APP_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                alert('Data berhasil disimpan!');
+                btn.disabled = false;
+                btn.innerText = 'KIRIM RESERVASI';
+                
+                // Reset input item form
+                document.getElementById('departemenInput').value = '';
+                document.getElementById('qtyCoklat').value = '0';
+                document.getElementById('qtyStraw').value = '0';
+                document.getElementById('qtyOrig').value = '0';
+                document.getElementById('qtyAqua').value = '0';
+            })
+            .catch((error) => {
+                alert('Gagal menyimpan data: ' + error);
+                btn.disabled = false;
+                btn.innerText = 'KIRIM RESERVASI';
+            });
         }
     </script>
 </body>
