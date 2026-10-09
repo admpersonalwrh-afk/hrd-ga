@@ -4,11 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservasi Nutrisi HRD-GA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Konfigurasi agar bisa jadi Logo Aplikasi di HP -->
+    <meta name="theme-color" content="#1B365D">
+    <link rel="apple-touch-icon" href="https://portal.karirlink.id/company/pt-multi-indomandiri-wings-group">
+    <link rel="icon" type="image/png" href="https://portal.karirlink.id/company/pt-multi-indomandiri-wings-group"> 
+
+    <script src="https://portal.karirlink.id/company/pt-multi-indomandiri-wings-group"></script>
 </head>
 <body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-md rounded-xl shadow-lg p-6">
+        
+        <!-- Bagian Logo & Judul -->
         <div class="text-center mb-6">
+            <div class="flex justify-center mb-3">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpjjQ0KG8XLk69cJr3Es786wKiB3ug-v46kmbatp05O_-Lop7co52YEUvS&s=10" alt="Logo Aplikasi" class="w-16 h-16 object-contain rounded-full bg-slate-50 p-2 border border-slate-200 shadow-sm">
+            </div>
             <h1 class="text-2xl font-bold text-slate-800">Reservasi Nutrisi</h1>
             <p class="text-sm text-slate-500">HRD-GA</p>
         </div>
@@ -98,7 +109,7 @@
 
             const payload = {
                 nik: document.getElementById('displayNik').innerText,
-                nama: document.getElementById('displayName'].innerText,
+                nama: document.getElementById('displayName').innerText,
                 departemen: document.getElementById('departemenInput').value,
                 milkuCoklat: document.getElementById('qtyCoklat').value,
                 milkuStraw: document.getElementById('qtyStraw').value,
@@ -107,7 +118,7 @@
             };
 
             // Masukkan URL Web App Google Apps Script Anda yang berakhiran /exec di bawah ini:
-            const WEB_APP_URL = 'PASTE_URL_WEB_APP_APPS_SCRIPT_ANDA_DI_SINI';
+            const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwKs_m90pvZuFCHAz4N2otvZmuXvmCRUItD91qaJxRV3fKkyv_R9h1r1hgY5k6AJs8mqQ/exec';
 
             fetch(WEB_APP_URL, {
                 method: 'POST',
