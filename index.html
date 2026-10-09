@@ -6,7 +6,6 @@
     <title>Reservasi Nutrisi HRD-GA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Menyamakan font standar sistem agar persis dengan Asset PDA */
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
@@ -22,9 +21,12 @@
                 <div class="bg-white border border-gray-200 shadow-sm rounded-lg px-4 py-2 mb-4 flex items-center justify-center">
                     <span class="text-xs font-bold tracking-widest text-blue-900">MIM</span>
                 </div>
-                <h1 class="text-xl font-bold text-gray-900 leading-snug">Reservasi Nutrisi Warehouse 1 FG</h1>
+                <h1 class="text-xl font-bold text-gray-900 leading-snug">Reservasi Nutrisi HRD-GA</h1>
                 <p class="text-xs text-gray-500 mt-1">Silakan masukkan NIK dan Nama Anda untuk melanjutkan</p>
             </div>
+
+            <!-- Pesan Notifikasi In-App (Pengganti Alert) -->
+            <div id="alertBox" class="hidden mb-4 p-3 rounded-xl text-xs font-medium text-center transition-all"></div>
 
             <!-- Form Login (NIK & NAMA) -->
             <div id="loginSection">
@@ -88,15 +90,35 @@
     </div>
 
     <script>
+        function showNotification(message, type = 'error') {
+            const alertBox = document.getElementById('alertBox');
+            alertBox.innerText = message;
+            alertBox.classList.remove('hidden');
+            
+            if (type === 'error') {
+                alertBox.className = "mb-4 p-3 rounded-xl text-xs font-medium text-center bg-red-100 text-red-700 border border-red-200";
+            } else {
+                alertBox.className = "mb-4 p-3 rounded-xl text-xs font-medium text-center bg-green-100 text-green-700 border border-green-200";
+            }
+
+            // Sembunyikan otomatis setelah 4 detik jika sukses
+            if (type === 'success') {
+                setTimeout(() => {
+                    alertBox.classList.add('hidden');
+                }, 4000);
+            }
+        }
+
         function handleLogin() {
             const nik = document.getElementById('nikInput').value.trim();
             const nama = document.getElementById('namaInput').value.trim();
 
             if (!nik || !nama) {
-                alert('Silakan masukkan NIK dan Nama terlebih dahulu!');
+                showNotification('Silakan masukkan NIK dan Nama terlebih dahulu!', 'error');
                 return;
             }
 
+            document.getElementById('alertBox').classList.add('hidden');
             document.getElementById('displayNik').innerText = nik;
             document.getElementById('displayName').innerText = nama;
 
@@ -107,6 +129,7 @@
         function handleLogout() {
             document.getElementById('nikInput').value = '';
             document.getElementById('namaInput').value = '';
+            document.getElementById('alertBox').classList.add('hidden');
             document.getElementById('formSection').classList.add('hidden');
             document.getElementById('loginSection').classList.remove('hidden');
         }
@@ -138,7 +161,7 @@
                 body: JSON.stringify(payload)
             })
             .then(() => {
-                alert('Data berhasil disimpan!');
+                showNotification('Data reservasi berhasil disimpan!', 'success');
                 btn.disabled = false;
                 btn.innerText = 'KIRIM RESERVASI';
                 
@@ -150,7 +173,7 @@
                 document.getElementById('qtyAqua').value = '0';
             })
             .catch((error) => {
-                alert('Gagal menyimpan data: ' + error);
+                showNotification('Gagal menyimpan data: ' + error, 'error');
                 btn.disabled = false;
                 btn.innerText = 'KIRIM RESERVASI';
             });
