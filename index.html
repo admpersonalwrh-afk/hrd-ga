@@ -66,25 +66,44 @@
                     <label class="block text-xs font-semibold text-slate-600 mb-1">Departemen</label>
                     <input type="text" id="departemenInput" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-pink-400 focus:bg-white outline-none transition text-slate-700 text-sm placeholder-slate-400" placeholder="Masukkan Departemen">
                 </div>
-                
+
+                <!-- Tombol Pilihan Kategori (Tab Switcher) -->
                 <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Milku Btl 200Ml Cok Prem</label>
-                    <input type="number" id="qtyCoklat" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-pink-400 focus:bg-white outline-none transition text-slate-700 text-sm">
+                    <label class="block text-xs font-semibold text-slate-600 mb-1.5">Pilih Kategori Produk</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button type="button" id="tabMilku" onclick="switchCategory('milku')" class="py-2.5 text-xs font-semibold rounded-xl border transition shadow-sm bg-pink-500 text-white border-pink-500">
+                            Milku
+                        </button>
+                        <button type="button" id="tabAquviva" onclick="switchCategory('aquviva')" class="py-2.5 text-xs font-semibold rounded-xl border transition shadow-sm bg-slate-50 text-slate-600 border-slate-200/80">
+                            AQUVIVA
+                        </button>
+                    </div>
                 </div>
 
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Milku Btl 200Ml Strawberry</label>
-                    <input type="number" id="qtyStraw" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-pink-400 focus:bg-white outline-none transition text-slate-700 text-sm">
+                <!-- Kontainer Input Milku -->
+                <div id="sectionMilku" class="space-y-3 pt-1">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Milku Btl 200Ml Cok Prem</label>
+                        <input type="number" id="qtyCoklat" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-pink-400 focus:bg-white outline-none transition text-slate-700 text-sm">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Milku Btl 200Ml Strawberry</label>
+                        <input type="number" id="qtyStraw" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-pink-400 focus:bg-white outline-none transition text-slate-700 text-sm">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Milku Btl 200Ml Original</label>
+                        <input type="number" id="qtyOrig" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-pink-400 focus:bg-white outline-none transition text-slate-700 text-sm">
+                    </div>
                 </div>
 
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Milku Btl 200Ml Original</label>
-                    <input type="number" id="qtyOrig" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-pink-400 focus:bg-white outline-none transition text-slate-700 text-sm">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">AQUVIVA</label>
-                    <input type="number" id="qtyAqua" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-pink-400 focus:bg-white outline-none transition text-slate-700 text-sm">
+                <!-- Kontainer Input AQUVIVA (Hidden Default) -->
+                <div id="sectionAquviva" class="hidden space-y-3 pt-1">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">AQUVIVA</label>
+                        <input type="number" id="qtyAqua" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-pink-400 focus:bg-white outline-none transition text-slate-700 text-sm">
+                    </div>
                 </div>
 
                 <button onclick="submitData()" id="submitBtn" class="w-full mt-2 bg-pink-500 hover:bg-pink-600 active:scale-[0.98] text-white font-semibold text-sm py-3.5 rounded-2xl shadow-md shadow-pink-500/20 transition-all duration-200">
@@ -127,6 +146,25 @@
             document.getElementById('namaInput').value = '';
             document.getElementById('formSection').classList.add('hidden');
             document.getElementById('loginSection').classList.remove('hidden');
+        }
+
+        function switchCategory(category) {
+            const tabMilku = document.getElementById('tabMilku');
+            const tabAquviva = document.getElementById('tabAquviva');
+            const secMilku = document.getElementById('sectionMilku');
+            const secAquviva = document.getElementById('sectionAquviva');
+
+            if (category === 'milku') {
+                tabMilku.className = "py-2.5 text-xs font-semibold rounded-xl border transition shadow-sm bg-pink-500 text-white border-pink-500";
+                tabAquviva.className = "py-2.5 text-xs font-semibold rounded-xl border transition shadow-sm bg-slate-50 text-slate-600 border-slate-200/80";
+                secMilku.classList.remove('hidden');
+                secAquviva.classList.add('hidden');
+            } else {
+                tabAquviva.className = "py-2.5 text-xs font-semibold rounded-xl border transition shadow-sm bg-pink-500 text-white border-pink-500";
+                tabMilku.className = "py-2.5 text-xs font-semibold rounded-xl border transition shadow-sm bg-slate-50 text-slate-600 border-slate-200/80";
+                secAquviva.classList.remove('hidden');
+                secMilku.classList.add('hidden');
+            }
         }
 
         function submitData() {
@@ -174,6 +212,7 @@
                 document.getElementById('qtyStraw').value = '0';
                 document.getElementById('qtyOrig').value = '0';
                 document.getElementById('qtyAqua').value = '0';
+                switchCategory('milku'); // Kembalikan ke tab Milku
             })
             .catch((error) => {
                 alert('Gagal menyimpan data: ' + error);
