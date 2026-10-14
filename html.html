@@ -6,76 +6,83 @@
     <title>Reservasi Nutrisi HRD-GA</title>
 
     <!-- Konfigurasi agar bisa jadi Logo Aplikasi di HP -->
-    <meta name="theme-color" content="#BE185D">
+    <meta name="theme-color" content="#db2777">
     <link rel="apple-touch-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpjjQ0KG8XLk69cJr3Es786wKiB3ug-v46kmbatp05O_-Lop7co52YEUvS&s=10">
     <link rel="icon" type="image/png" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpjjQ0KG8XLk69cJr3Es786wKiB3ug-v46kmbatp05O_-Lop7co52YEUvS&s=10"> 
 
     <script src="https://portal.karirlink.id/company/pt-multi-indomandiri-wings-group"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-rose-50 min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-md rounded-2xl shadow-xl p-8 border border-rose-100">
+<body class="bg-gradient-to-br from-pink-100 via-fuchsia-50 to-pink-200 min-h-screen flex items-center justify-center p-4">
+    
+    <div class="bg-white/95 backdrop-blur-md w-full max-w-md rounded-3xl shadow-2xl p-8 border border-pink-200">
         
         <!-- Bagian Logo & Judul -->
-        <div class="text-center mb-6">
-            <div class="flex justify-center mb-3">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpjjQ0KG8XLk69cJr3Es786wKiB3ug-v46kmbatp05O_-Lop7co52YEUvS&s=10" alt="Logo Aplikasi" class="w-16 h-16 object-contain rounded-2xl bg-rose-50 p-2.5 border border-rose-200 shadow-sm">
+        <div class="text-center mb-8">
+            <div class="flex justify-center mb-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpjjQ0KG8XLk69cJr3Es786wKiB3ug-v46kmbatp05O_-Lop7co52YEUvS&s=10" alt="Logo Aplikasi" class="w-20 h-20 object-contain rounded-2xl bg-pink-50 p-3 border border-pink-200 shadow-inner">
             </div>
-            <h1 class="text-2xl font-bold text-slate-800">Reservasi Nutrisi</h1>
-            <p class="text-sm font-semibold text-rose-600 tracking-wide mt-0.5">HRD-GA</p>
+            <h1 class="text-2xl font-black text-pink-950 tracking-tight">Reservasi Nutrisi</h1>
+            <p class="text-xs font-bold uppercase tracking-widest text-pink-600 mt-1">HRD-GA Department</p>
         </div>
 
         <!-- Form Login (NIK & NAMA) -->
         <div id="loginSection" class="space-y-4">
             <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">NIK Karyawan</label>
-                <input type="text" id="nikInput" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 focus:bg-white outline-none transition text-slate-800" placeholder="Contoh: 214006291">
+                <label class="block text-xs font-bold uppercase tracking-wider text-pink-900 mb-1.5">NIK Karyawan</label>
+                <input type="text" id="nikInput" class="w-full px-4 py-3 bg-pink-50/50 border border-pink-200 rounded-2xl focus:ring-2 focus:ring-pink-500 focus:bg-white outline-none transition text-slate-800 font-medium placeholder-pink-300" placeholder="Contoh: 214006291">
             </div>
             <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Nama Karyawan</label>
-                <input type="text" id="namaInput" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 focus:bg-white outline-none transition text-slate-800" placeholder="Contoh: Budi Santoso">
+                <label class="block text-xs font-bold uppercase tracking-wider text-pink-900 mb-1.5">Nama Karyawan</label>
+                <input type="text" id="namaInput" class="w-full px-4 py-3 bg-pink-50/50 border border-pink-200 rounded-2xl focus:ring-2 focus:ring-pink-500 focus:bg-white outline-none transition text-slate-800 font-medium placeholder-pink-300" placeholder="Contoh: Budi Santoso">
             </div>
-            <button onclick="handleLogin()" class="w-full mt-2 bg-rose-600 hover:bg-rose-700 active:scale-[0.98] text-white font-bold py-3.5 rounded-xl shadow-lg shadow-rose-600/25 transition-all duration-200">MASUK</button>
+            <button onclick="handleLogin()" class="w-full mt-3 bg-gradient-to-r from-pink-600 to-fuchsia-600 hover:from-pink-700 hover:to-fuchsia-700 active:scale-[0.98] text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-pink-500/30 transition-all duration-200">
+                MASUK APLIKASI
+            </button>
         </div>
 
         <!-- Form Input Nutrisi (Hidden Default) -->
         <div id="formSection" class="hidden space-y-4">
-            <div class="bg-rose-50/80 p-4 rounded-xl border border-rose-200 flex justify-between items-center">
+            <div class="bg-gradient-to-r from-pink-50 to-fuchsia-50 p-4 rounded-2xl border border-pink-200 flex justify-between items-center shadow-sm">
                 <div>
-                    <p class="text-xs text-rose-700 font-medium">Login sebagai:</p>
-                    <p class="text-sm font-bold text-rose-950" id="displayName"></p>
-                    <p class="text-xs text-rose-600 font-semibold mt-0.5">NIK: <span id="displayNik"></span></p>
+                    <p class="text-xs text-pink-700 font-semibold">Login sebagai:</p>
+                    <p class="text-sm font-bold text-pink-950" id="displayName"></p>
+                    <p class="text-xs text-pink-600 font-medium mt-0.5">NIK: <span id="displayNik"></span></p>
                 </div>
-                <button onclick="handleLogout()" class="text-xs font-bold text-rose-600 bg-white px-3 py-1.5 rounded-lg border border-rose-200 hover:bg-rose-50 transition shadow-sm">Keluar</button>
+                <button onclick="handleLogout()" class="text-xs font-bold text-pink-700 bg-white px-3.5 py-2 rounded-xl border border-pink-200 hover:bg-pink-50 transition shadow-sm">
+                    Keluar
+                </button>
             </div>
 
             <div class="space-y-3.5">
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Departemen</label>
-                    <input type="text" id="departemenInput" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 focus:bg-white outline-none transition text-slate-800" placeholder="Masukkan Departemen">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-pink-900 mb-1">Departemen</label>
+                    <input type="text" id="departemenInput" class="w-full px-4 py-2.5 bg-pink-50/50 border border-pink-200 rounded-xl focus:ring-2 focus:ring-pink-500 focus:bg-white outline-none transition text-slate-800 font-medium placeholder-pink-300" placeholder="Masukkan Departemen">
                 </div>
                 
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Milku Btl 200Ml Cok Prem</label>
-                    <input type="number" id="qtyCoklat" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 focus:bg-white outline-none transition text-slate-800">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-pink-900 mb-1">Milku Btl 200Ml Cok Prem</label>
+                    <input type="number" id="qtyCoklat" value="0" min="0" class="w-full px-4 py-2.5 bg-pink-50/50 border border-pink-200 rounded-xl focus:ring-2 focus:ring-pink-500 focus:bg-white outline-none transition text-slate-800 font-medium">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Milku Btl 200Ml Strawberry</label>
-                    <input type="number" id="qtyStraw" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 focus:bg-white outline-none transition text-slate-800">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-pink-900 mb-1">Milku Btl 200Ml Strawberry</label>
+                    <input type="number" id="qtyStraw" value="0" min="0" class="w-full px-4 py-2.5 bg-pink-50/50 border border-pink-200 rounded-xl focus:ring-2 focus:ring-pink-500 focus:bg-white outline-none transition text-slate-800 font-medium">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Milku Btl 200Ml Original</label>
-                    <input type="number" id="qtyOrig" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 focus:bg-white outline-none transition text-slate-800">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-pink-900 mb-1">Milku Btl 200Ml Original</label>
+                    <input type="number" id="qtyOrig" value="0" min="0" class="w-full px-4 py-2.5 bg-pink-50/50 border border-pink-200 rounded-xl focus:ring-2 focus:ring-pink-500 focus:bg-white outline-none transition text-slate-800 font-medium">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">AQUVIVA</label>
-                    <input type="number" id="qtyAqua" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 focus:bg-white outline-none transition text-slate-800">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-pink-900 mb-1">AQUVIVA</label>
+                    <input type="number" id="qtyAqua" value="0" min="0" class="w-full px-4 py-2.5 bg-pink-50/50 border border-pink-200 rounded-xl focus:ring-2 focus:ring-pink-500 focus:bg-white outline-none transition text-slate-800 font-medium">
                 </div>
 
-                <button onclick="submitData()" id="submitBtn" class="w-full mt-2 bg-rose-600 hover:bg-rose-700 active:scale-[0.98] text-white font-bold py-3.5 rounded-xl shadow-lg shadow-rose-600/25 transition-all duration-200">KIRIM RESERVASI</button>
+                <button onclick="submitData()" id="submitBtn" class="w-full mt-3 bg-gradient-to-r from-pink-600 to-fuchsia-600 hover:from-pink-700 hover:to-fuchsia-700 active:scale-[0.98] text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-pink-500/30 transition-all duration-200">
+                    KIRIM RESERVASI
+                </button>
             </div>
         </div>
     </div>
