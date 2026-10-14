@@ -111,6 +111,48 @@
                 </button>
             </div>
         </div>
+
+        <!-- Bagian Sukses / Konfirmasi (Hidden Default) -->
+        <div id="successSection" class="hidden text-center space-y-4">
+            <div class="flex justify-center">
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-500 rounded-full flex items-center justify-center text-3xl shadow-sm border border-emerald-200 animate-bounce">
+                    ✓
+                </div>
+            </div>
+            <div>
+                <h2 class="text-base font-bold text-slate-800">Reservasi Berhasil Dikirim!</h2>
+                <p class="text-xs text-slate-500 mt-0.5">Berikut rincian jumlah reservasi nutrisi Anda:</p>
+            </div>
+
+            <!-- Ringkasan Jumlah Reservasi -->
+            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 text-left space-y-2 text-xs">
+                <div class="flex justify-between pb-1.5 border-b border-slate-200/60">
+                    <span class="text-slate-600 font-medium">Departemen:</span>
+                    <span class="font-bold text-slate-800" id="resDept"></span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-600">Milku Cokelat Prem:</span>
+                    <span class="font-bold text-slate-800" id="resCoklat">0</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-600">Milku Strawberry:</span>
+                    <span class="font-bold text-slate-800" id="resStraw">0</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-600">Milku Original:</span>
+                    <span class="font-bold text-slate-800" id="resOrig">0</span>
+                </div>
+                <div class="flex justify-between pt-1 border-t border-slate-200/60">
+                    <span class="text-slate-600 font-medium">AQUVIVA:</span>
+                    <span class="font-bold text-pink-600" id="resAqua">0</span>
+                </div>
+            </div>
+
+            <button onclick="resetToForm()" class="w-full bg-pink-500 hover:bg-pink-600 active:scale-[0.98] text-white font-semibold text-sm py-3.5 rounded-2xl shadow-md shadow-pink-500/20 transition-all duration-200">
+                Buat Reservasi Baru
+            </button>
+        </div>
+
     </div>
 
     <!-- Footer di bawah kartu -->
@@ -181,14 +223,20 @@
             btn.disabled = true;
             btn.innerText = 'Memproses...';
 
+            // Ambil nilai Qty
+            const coklat = document.getElementById('qtyCoklat').value || 0;
+            const straw = document.getElementById('qtyStraw').value || 0;
+            const orig = document.getElementById('qtyOrig').value || 0;
+            const aqua = document.getElementById('qtyAqua').value || 0;
+
             const payload = {
                 nik: document.getElementById('displayNik').innerText,
                 nama: document.getElementById('displayName').innerText,
                 departemen: departemen,
-                milkuCoklat: document.getElementById('qtyCoklat').value,
-                milkuStraw: document.getElementById('qtyStraw').value,
-                milkuOrig: document.getElementById('qtyOrig').value,
-                aquviva: document.getElementById('qtyAqua').value
+                milkuCoklat: coklat,
+                milkuStraw: straw,
+                milkuOrig: orig,
+                aquviva: aqua
             };
 
             const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzckD1blDNGUgb0dm5JNEokXoQ4VZljV1AQkoMmWAHhFjDzSkeZWImy79AxsIXMoztzzQ/exec';
@@ -202,23 +250,39 @@
                 body: JSON.stringify(payload)
             })
             .then(() => {
-                alert('Data berhasil disimpan!');
                 btn.disabled = false;
                 btn.innerText = 'Kirim Reservasi';
                 
-                // Reset input item form
-                document.getElementById('departemenInput').value = '';
-                document.getElementById('qtyCoklat').value = '0';
-                document.getElementById('qtyStraw').value = '0';
-                document.getElementById('qtyOrig').value = '0';
-                document.getElementById('qtyAqua').value = '0';
-                switchCategory('milku'); // Kembalikan ke tab Milku
+                // Masukkan data ke tampilan ringkasan sukses
+                document.getElementById('resDept').innerText = departemen;
+                document.getElementById('resCoklat').innerText = coklat;
+                document.getElementById('resStraw').innerText = straw;
+                document.getElementById('resOrig').innerText = orig;
+                document.getElementById('resAqua').innerText = aqua;
+
+                // Sembunyikan form, tampilkan bagian sukses
+                document.getElementById('formSection').classList.add('hidden');
+                document.getElementById('successSection').classList.remove('hidden');
             })
             .catch((error) => {
                 alert('Gagal menyimpan data: ' + error);
                 btn.disabled = false;
                 btn.innerText = 'Kirim Reservasi';
             });
+        }
+
+        function resetToForm() {
+            // Reset input form
+            document.getElementById('departemenInput').value = '';
+            document.getElementById('qtyCoklat').value = '0';
+            document.getElementById('qtyStraw').value = '0';
+            document.getElementById('qtyOrig').value = '0';
+            document.getElementById('qtyAqua').value = '0';
+            switchCategory('milku'); // Kembali ke tab Milku
+
+            // Sembunyikan sukses, tampilkan kembali form input
+            document.getElementById('successSection').classList.add('hidden');
+            document.getElementById('formSection').classList.remove('hidden');
         }
     </script>
 </body>
