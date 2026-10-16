@@ -98,11 +98,15 @@
                     </div>
                 </div>
 
-                <!-- Kontainer Input AQUVIVA (Hidden Default) -->
+                <!-- Kontainer Input AQUVIVA (Hidden Default) - Terbagi 250ml & 700ml -->
                 <div id="sectionAquviva" class="hidden space-y-3 pt-1">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">AQUVIVA</label>
-                        <input type="number" id="qtyAqua" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-[#F9DAD9] focus:bg-white outline-none transition text-slate-700 text-sm">
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">AQUVIVA 250ML</label>
+                        <input type="number" id="qtyAqua250" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-[#F9DAD9] focus:bg-white outline-none transition text-slate-700 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">AQUVIVA 700ML</label>
+                        <input type="number" id="qtyAqua700" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-[#F9DAD9] focus:bg-white outline-none transition text-slate-700 text-sm">
                     </div>
                 </div>
 
@@ -143,8 +147,12 @@
                     <span class="font-bold text-slate-800" id="resOrig">0</span>
                 </div>
                 <div class="flex justify-between pt-1 border-t border-slate-200/60">
-                    <span class="text-slate-600 font-medium">AQUVIVA:</span>
-                    <span class="font-bold text-rose-600" id="resAqua">0</span>
+                    <span class="text-slate-600">AQUVIVA 250ML:</span>
+                    <span class="font-bold text-rose-600" id="resAqua250">0</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-600">AQUVIVA 700ML:</span>
+                    <span class="font-bold text-rose-600" id="resAqua700">0</span>
                 </div>
             </div>
 
@@ -227,7 +235,8 @@
             const coklat = document.getElementById('qtyCoklat').value || 0;
             const straw = document.getElementById('qtyStraw').value || 0;
             const orig = document.getElementById('qtyOrig').value || 0;
-            const aqua = document.getElementById('qtyAqua').value || 0;
+            const aqua250 = document.getElementById('qtyAqua250').value || 0;
+            const aqua700 = document.getElementById('qtyAqua700').value || 0;
 
             const payload = {
                 nik: document.getElementById('displayNik').innerText,
@@ -236,10 +245,11 @@
                 milkuCoklat: coklat,
                 milkuStraw: straw,
                 milkuOrig: orig,
-                aquviva: aqua
+                aquviva250: aqua250,
+                aquviva700: aqua700
             };
 
-            const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzckD1blDNGUgb0dm5JNEokXoQ4VZljV1AQkoMmWAHhFjDzSkeZWImy79AxsIXMoztzzQ/exec';
+            const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyzwYc_EAQjy4cciUQr-DUgb4AQL8z-tBvqI_1w5wkfx6KGt9fB_5oD3-LfIzEvqUd7/exec';
 
             fetch(WEB_APP_URL, {
                 method: 'POST',
@@ -258,7 +268,8 @@
                 document.getElementById('resCoklat').innerText = coklat;
                 document.getElementById('resStraw').innerText = straw;
                 document.getElementById('resOrig').innerText = orig;
-                document.getElementById('resAqua').innerText = aqua;
+                document.getElementById('resAqua250').innerText = aqua250;
+                document.getElementById('resAqua700').innerText = aqua700;
 
                 // Sembunyikan form, tampilkan bagian sukses
                 document.getElementById('formSection').classList.add('hidden');
@@ -277,7 +288,8 @@
             document.getElementById('qtyCoklat').value = '0';
             document.getElementById('qtyStraw').value = '0';
             document.getElementById('qtyOrig').value = '0';
-            document.getElementById('qtyAqua').value = '0';
+            document.getElementById('qtyAqua250').value = '0';
+            document.getElementById('qtyAqua700').value = '0';
             switchCategory('milku'); // Kembali ke tab Milku
 
             // Sembunyikan sukses, tampilkan kembali form input
