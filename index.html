@@ -6,7 +6,7 @@
     <title>Reservasi Nutrisi HRD-GA</title>
 
     <!-- Konfigurasi agar bisa jadi Logo Aplikasi di HP -->
-    <meta name="theme-color" content="#f472b6">
+    <meta name="theme-color" content="#F9DAD9">
     <link rel="apple-touch-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpjjQ0KG8XLk69cJr3Es786wKiB3ug-v46kmbatp05O_-Lop7co52YEUvS&s=10">
     <link rel="icon" type="image/png" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpjjQ0KG8XLk69cJr3Es786wKiB3ug-v46kmbatp05O_-Lop7co52YEUvS&s=10"> 
 
@@ -19,40 +19,40 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-pink-50 via-rose-50/50 to-pink-100/60 min-h-screen flex flex-col items-center justify-center p-4">
+<body class="bg-gradient-to-br from-[#F9DAD9] via-rose-50/50 to-[#f5c7c5] min-h-screen flex flex-col items-center justify-center p-4">
     
     <!-- Kontainer Utama Form -->
-    <div class="bg-white/90 backdrop-blur-md w-full max-w-md rounded-3xl shadow-xl p-8 border border-pink-100 mb-4">
+    <div class="bg-white/90 backdrop-blur-md w-full max-w-md rounded-3xl shadow-xl p-8 border border-[#F9DAD9] mb-4">
         
         <!-- Bagian Logo & Judul -->
         <div class="text-center mb-7">
             <div class="flex justify-center mb-3">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpjjQ0KG8XLk69cJr3Es786wKiB3ug-v46kmbatp05O_-Lop7co52YEUvS&s=10" alt="Logo Aplikasi" class="w-16 h-16 object-contain rounded-2xl bg-pink-50 p-2.5 border border-pink-200/60 shadow-sm">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpjjQ0KG8XLk69cJr3Es786wKiB3ug-v46kmbatp05O_-Lop7co52YEUvS&s=10" alt="Logo Aplikasi" class="w-16 h-16 object-contain rounded-2xl bg-[#F9DAD9]/30 p-2.5 border border-[#F9DAD9] shadow-sm">
             </div>
             <h1 class="text-xl font-bold text-slate-800 tracking-normal">Reservasi Nutrisi</h1>
-            <p class="text-xs font-medium text-pink-500 tracking-wider uppercase mt-1">HRD-GA Department</p>
+            <p class="text-xs font-medium text-rose-500 tracking-wider uppercase mt-1">HRD-GA Department</p>
         </div>
 
         <!-- Form Login (NIK & NAMA) -->
         <div id="loginSection" class="space-y-4">
             <div>
                 <label class="block text-xs font-semibold text-slate-600 mb-1.5">NIK Karyawan</label>
-                <input type="text" id="nikInput" maxlength="9" class="w-full px-4 py-3 bg-slate-50/70 border border-slate-200/80 rounded-2xl focus:ring-2 focus:ring-pink-400 focus:bg-white outline-none transition text-slate-700 text-sm placeholder-slate-400" placeholder="Contoh: 214006291">
+                <input type="text" id="nikInput" maxlength="9" class="w-full px-4 py-3 bg-slate-50/70 border border-slate-200/80 rounded-2xl focus:ring-2 focus:ring-[#F9DAD9] focus:bg-white outline-none transition text-slate-700 text-sm placeholder-slate-400" placeholder="Contoh: 214006291">
             </div>
             <div>
                 <label class="block text-xs font-semibold text-slate-600 mb-1.5">Nama Karyawan</label>
-                <input type="text" id="namaInput" class="w-full px-4 py-3 bg-slate-50/70 border border-slate-200/80 rounded-2xl focus:ring-2 focus:ring-pink-400 focus:bg-white outline-none transition text-slate-700 text-sm placeholder-slate-400" placeholder="Contoh: Budi Santoso">
+                <input type="text" id="namaInput" class="w-full px-4 py-3 bg-slate-50/70 border border-slate-200/80 rounded-2xl focus:ring-2 focus:ring-[#F9DAD9] focus:bg-white outline-none transition text-slate-700 text-sm placeholder-slate-400" placeholder="Contoh: Budi Santoso">
             </div>
-            <button onclick="handleLogin()" class="w-full mt-2 bg-pink-500 hover:bg-pink-600 active:scale-[0.98] text-white font-semibold text-sm py-3.5 rounded-2xl shadow-md shadow-pink-500/20 transition-all duration-200">
+            <button onclick="handleLogin()" class="w-full mt-2 bg-rose-400 hover:bg-rose-500 active:scale-[0.98] text-white font-semibold text-sm py-3.5 rounded-2xl shadow-md shadow-rose-400/20 transition-all duration-200">
                 Masuk
             </button>
         </div>
 
         <!-- Form Input Nutrisi (Hidden Default) -->
         <div id="formSection" class="hidden space-y-4">
-            <div class="bg-pink-50/60 p-3.5 rounded-2xl border border-pink-100 flex justify-between items-center">
+            <div class="bg-[#F9DAD9]/30 p-3.5 rounded-2xl border border-[#F9DAD9] flex justify-between items-center">
                 <div>
-                    <p class="text-[11px] text-pink-600 font-medium">Login sebagai:</p>
+                    <p class="text-[11px] text-rose-600 font-medium">Login sebagai:</p>
                     <p class="text-xs font-bold text-slate-800" id="displayName"></p>
                     <p class="text-[11px] text-slate-500 font-medium mt-0.5">NIK: <span id="displayNik"></span></p>
                 </div>
@@ -64,14 +64,14 @@
             <div class="space-y-3">
                 <div>
                     <label class="block text-xs font-semibold text-slate-600 mb-1">Departemen</label>
-                    <input type="text" id="departemenInput" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-pink-400 focus:bg-white outline-none transition text-slate-700 text-sm placeholder-slate-400" placeholder="Masukkan Departemen">
+                    <input type="text" id="departemenInput" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-[#F9DAD9] focus:bg-white outline-none transition text-slate-700 text-sm placeholder-slate-400" placeholder="Masukkan Departemen">
                 </div>
 
                 <!-- Tombol Pilihan Kategori (Tab Switcher) -->
                 <div>
                     <label class="block text-xs font-semibold text-slate-600 mb-1.5">Pilih Kategori Produk</label>
                     <div class="grid grid-cols-2 gap-2">
-                        <button type="button" id="tabMilku" onclick="switchCategory('milku')" class="py-2.5 text-xs font-semibold rounded-xl border transition shadow-sm bg-pink-500 text-white border-pink-500">
+                        <button type="button" id="tabMilku" onclick="switchCategory('milku')" class="py-2.5 text-xs font-semibold rounded-xl border transition shadow-sm bg-rose-400 text-white border-rose-400">
                             Milku
                         </button>
                         <button type="button" id="tabAquviva" onclick="switchCategory('aquviva')" class="py-2.5 text-xs font-semibold rounded-xl border transition shadow-sm bg-slate-50 text-slate-600 border-slate-200/80">
@@ -84,17 +84,17 @@
                 <div id="sectionMilku" class="space-y-3 pt-1">
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1">Milku Btl 200Ml Cok Prem</label>
-                        <input type="number" id="qtyCoklat" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-pink-400 focus:bg-white outline-none transition text-slate-700 text-sm">
+                        <input type="number" id="qtyCoklat" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-[#F9DAD9] focus:bg-white outline-none transition text-slate-700 text-sm">
                     </div>
 
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1">Milku Btl 200Ml Strawberry</label>
-                        <input type="number" id="qtyStraw" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-pink-400 focus:bg-white outline-none transition text-slate-700 text-sm">
+                        <input type="number" id="qtyStraw" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-[#F9DAD9] focus:bg-white outline-none transition text-slate-700 text-sm">
                     </div>
 
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1">Milku Btl 200Ml Original</label>
-                        <input type="number" id="qtyOrig" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-pink-400 focus:bg-white outline-none transition text-slate-700 text-sm">
+                        <input type="number" id="qtyOrig" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-[#F9DAD9] focus:bg-white outline-none transition text-slate-700 text-sm">
                     </div>
                 </div>
 
@@ -102,11 +102,11 @@
                 <div id="sectionAquviva" class="hidden space-y-3 pt-1">
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1">AQUVIVA</label>
-                        <input type="number" id="qtyAqua" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-pink-400 focus:bg-white outline-none transition text-slate-700 text-sm">
+                        <input type="number" id="qtyAqua" value="0" min="0" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-[#F9DAD9] focus:bg-white outline-none transition text-slate-700 text-sm">
                     </div>
                 </div>
 
-                <button onclick="submitData()" id="submitBtn" class="w-full mt-2 bg-pink-500 hover:bg-pink-600 active:scale-[0.98] text-white font-semibold text-sm py-3.5 rounded-2xl shadow-md shadow-pink-500/20 transition-all duration-200">
+                <button onclick="submitData()" id="submitBtn" class="w-full mt-2 bg-rose-400 hover:bg-rose-500 active:scale-[0.98] text-white font-semibold text-sm py-3.5 rounded-2xl shadow-md shadow-rose-400/20 transition-all duration-200">
                     Kirim Reservasi
                 </button>
             </div>
@@ -144,11 +144,11 @@
                 </div>
                 <div class="flex justify-between pt-1 border-t border-slate-200/60">
                     <span class="text-slate-600 font-medium">AQUVIVA:</span>
-                    <span class="font-bold text-pink-600" id="resAqua">0</span>
+                    <span class="font-bold text-rose-600" id="resAqua">0</span>
                 </div>
             </div>
 
-            <button onclick="resetToForm()" class="w-full bg-pink-500 hover:bg-pink-600 active:scale-[0.98] text-white font-semibold text-sm py-3.5 rounded-2xl shadow-md shadow-pink-500/20 transition-all duration-200">
+            <button onclick="resetToForm()" class="w-full bg-rose-400 hover:bg-rose-500 active:scale-[0.98] text-white font-semibold text-sm py-3.5 rounded-2xl shadow-md shadow-rose-400/20 transition-all duration-200">
                 Buat Reservasi Baru
             </button>
         </div>
@@ -197,12 +197,12 @@
             const secAquviva = document.getElementById('sectionAquviva');
 
             if (category === 'milku') {
-                tabMilku.className = "py-2.5 text-xs font-semibold rounded-xl border transition shadow-sm bg-pink-500 text-white border-pink-500";
+                tabMilku.className = "py-2.5 text-xs font-semibold rounded-xl border transition shadow-sm bg-rose-400 text-white border-rose-400";
                 tabAquviva.className = "py-2.5 text-xs font-semibold rounded-xl border transition shadow-sm bg-slate-50 text-slate-600 border-slate-200/80";
                 secMilku.classList.remove('hidden');
                 secAquviva.classList.add('hidden');
             } else {
-                tabAquviva.className = "py-2.5 text-xs font-semibold rounded-xl border transition shadow-sm bg-pink-500 text-white border-pink-500";
+                tabAquviva.className = "py-2.5 text-xs font-semibold rounded-xl border transition shadow-sm bg-rose-400 text-white border-rose-400";
                 tabMilku.className = "py-2.5 text-xs font-semibold rounded-xl border transition shadow-sm bg-slate-50 text-slate-600 border-slate-200/80";
                 secAquviva.classList.remove('hidden');
                 secMilku.classList.add('hidden');
