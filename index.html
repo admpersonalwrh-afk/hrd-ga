@@ -84,10 +84,7 @@
             <div>
                 <label class="block text-xs font-semibold text-slate-600 mb-1">Departemen</label>
                 <select id="departemenInput" onchange="updateDeptEmail()" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-[#F9DAD9] focus:bg-white outline-none transition text-slate-700 text-sm">
-                    <option value="">-- Pilih Departemen --</option>
-                    <? for (var i = 0; i < deptList.length; i++) { ?>
-                        <option value="<?= deptList[i].nama ?>" data-email="<?= deptList[i].email ?>"><?= deptList[i].nama ?></option>
-                    <? } ?>
+                    <option value="">-- Memuat Departemen --</option>
                 </select>
             </div>
 
@@ -318,7 +315,7 @@
                 aquviva700: aqua700
             };
 
-            const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwI_M7oQLiLGmDCf5Nh-ZrSzCsAet2DzOni_L8_NM7L-hWm85fOeYLWP-d-J7smDu9ftw/exec';
+            const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwmA2eyORXCy1TIIy0Mf-RAmWuoqXgfiacpQSDoBLyflr-unhdGOhZKsHIMYtK0BOQe1Q/exec';
 
             fetch(WEB_APP_URL, {
                 method: 'POST',
