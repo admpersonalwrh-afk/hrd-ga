@@ -80,13 +80,17 @@
             </div>
 
             <div class="space-y-3">
-                <!-- Dropdown Departemen Dinamis dari Sheet DEPT -->
-            <div>
-                <label class="block text-xs font-semibold text-slate-600 mb-1">Departemen</label>
-                <select id="departemenInput" onchange="updateDeptEmail()" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-[#F9DAD9] focus:bg-white outline-none transition text-slate-700 text-sm">
-                    <option value="">-- Memuat Departemen --</option>
-                </select>
-            </div>
+                <!-- Dropdown Departemen -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Departemen</label>
+                    <select id="departemenInput" onchange="updateDeptEmail()" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-[#F9DAD9] focus:bg-white outline-none transition text-slate-700 text-sm">
+                        <option value="">-- Pilih Departemen --</option>
+                        <option value="HRD-GA" data-email="hrd.ga@company.com">HRD-GA</option>
+                        <option value="Production" data-email="production@company.com">Production</option>
+                        <option value="Warehouse" data-email="warehouse@company.com">Warehouse</option>
+                        <option value="Finance" data-email="finance@company.com">Finance</option>
+                    </select>
+                </div>
 
                 <!-- Info Email Otomatis Muncul Saat Departemen Dipilih -->
                 <div id="emailInfoContainer" class="hidden text-[11px] text-slate-500 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
@@ -315,7 +319,7 @@
                 aquviva700: aqua700
             };
 
-            const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwmA2eyORXCy1TIIy0Mf-RAmWuoqXgfiacpQSDoBLyflr-unhdGOhZKsHIMYtK0BOQe1Q/exec';
+            const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxvShxC7sx51bjWRXIWInTKdTWXCtLbAgDwlb0OzZ7b8UegTs0QLSyUu4JvFmq0s1oqSw/exec';
 
             fetch(WEB_APP_URL, {
                 method: 'POST',
