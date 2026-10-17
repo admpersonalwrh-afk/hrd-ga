@@ -17,6 +17,24 @@
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
+
+        /* Pengaturan khusus saat dicetak (Print mode) */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+                display: block !important;
+            }
+            .no-print, button, footer, #loginSection, #formSection {
+                display: none !important;
+            }
+            #successSection {
+                display: block !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-[#F9DAD9] via-rose-50/50 to-[#f5c7c5] min-h-screen flex flex-col items-center justify-center p-4">
@@ -25,7 +43,7 @@
     <div class="bg-white/90 backdrop-blur-md w-full max-w-md rounded-3xl shadow-xl p-8 border border-[#F9DAD9] mb-4">
         
         <!-- Bagian Logo & Judul -->
-        <div class="text-center mb-7">
+        <div class="text-center mb-7 no-print">
             <div class="flex justify-center mb-3">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpjjQ0KG8XLk69cJr3Es786wKiB3ug-v46kmbatp05O_-Lop7co52YEUvS&s=10" alt="Logo Aplikasi" class="w-16 h-16 object-contain rounded-2xl bg-[#F9DAD9]/30 p-2.5 border border-[#F9DAD9] shadow-sm">
             </div>
@@ -62,10 +80,23 @@
             </div>
 
             <div class="space-y-3">
+                <!-- Dropdown Departemen -->
                 <div>
                     <label class="block text-xs font-semibold text-slate-600 mb-1">Departemen</label>
-                    <input type="text" id="departemenInput" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-[#F9DAD9] focus:bg-white outline-none transition text-slate-700 text-sm placeholder-slate-400" placeholder="Masukkan Departemen">
+                    <select id="departemenInput" onchange="updateDeptEmail()" class="w-full px-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-xl focus:ring-2 focus:ring-[#F9DAD9] focus:bg-white outline-none transition text-slate-700 text-sm">
+                        <option value="">-- Pilih Departemen --</option>
+                        <option value="HRD-GA" data-email="hrd.ga@company.com">HRD-GA</option>
+                        <option value="Production" data-email="production@company.com">Production</option>
+                        <option value="Warehouse" data-email="warehouse@company.com">Warehouse</option>
+                        <option value="Finance" data-email="finance@company.com">Finance</option>
+                    </select>
                 </div>
+
+                <!-- Info Email Otomatis Muncul Saat Departemen Dipilih -->
+                <div id="emailInfoContainer" class="hidden text-[11px] text-slate-500 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                    Email Tujuan/Dept Head: <span id="displayEmailDept" class="font-bold text-slate-700"></span>
+                </div>
+                <input type="hidden" id="emailDeptInput">
 
                 <!-- Tombol Pilihan Kategori (Tab Switcher) -->
                 <div>
@@ -98,7 +129,7 @@
                     </div>
                 </div>
 
-                <!-- Kontainer Input AQUVIVA (Hidden Default) - Terbagi 250ml & 700ml -->
+                <!-- Kontainer Input AQUVIVA -->
                 <div id="sectionAquviva" class="hidden space-y-3 pt-1">
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1">AQUVIVA 250ML</label>
@@ -118,21 +149,33 @@
 
         <!-- Bagian Sukses / Konfirmasi (Hidden Default) -->
         <div id="successSection" class="hidden text-center space-y-4">
-            <div class="flex justify-center">
+            <div class="flex justify-center no-print">
                 <div class="w-16 h-16 bg-emerald-100 text-emerald-500 rounded-full flex items-center justify-center text-3xl shadow-sm border border-emerald-200 animate-bounce">
                     ✓
                 </div>
             </div>
             <div>
-                <h2 class="text-base font-bold text-slate-800">Reservasi Berhasil Dikirim!</h2>
-                <p class="text-xs text-slate-500 mt-0.5">Berikut rincian jumlah reservasi nutrisi Anda:</p>
+                <h2 class="text-base font-bold text-slate-800">Reservasi Berhasil & Siap Dicetak!</h2>
+                <p class="text-xs text-slate-500 mt-0.5">Berikut rincian bukti reservasi nutrisi Anda:</p>
             </div>
 
-            <!-- Ringkasan Jumlah Reservasi -->
+            <!-- Ringkasan Jumlah Reservasi (Layout Print) -->
             <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 text-left space-y-2 text-xs">
+                <div class="flex justify-between pb-1.5 border-b border-slate-200/60">
+                    <span class="text-slate-600 font-medium">Pemohon:</span>
+                    <span class="font-bold text-slate-800" id="resNama"></span>
+                </div>
+                <div class="flex justify-between pb-1.5 border-b border-slate-200/60">
+                    <span class="text-slate-600 font-medium">NIK:</span>
+                    <span class="font-bold text-slate-800" id="resNik"></span>
+                </div>
                 <div class="flex justify-between pb-1.5 border-b border-slate-200/60">
                     <span class="text-slate-600 font-medium">Departemen:</span>
                     <span class="font-bold text-slate-800" id="resDept"></span>
+                </div>
+                <div class="flex justify-between pb-1.5 border-b border-slate-200/60">
+                    <span class="text-slate-600 font-medium">Email Tujuan:</span>
+                    <span class="font-bold text-slate-800" id="resEmail"></span>
                 </div>
                 <div class="flex justify-between">
                     <span class="text-slate-600">Milku Cokelat Prem:</span>
@@ -156,15 +199,21 @@
                 </div>
             </div>
 
-            <button onclick="resetToForm()" class="w-full bg-rose-400 hover:bg-rose-500 active:scale-[0.98] text-white font-semibold text-sm py-3.5 rounded-2xl shadow-md shadow-rose-400/20 transition-all duration-200">
-                Buat Reservasi Baru
-            </button>
+            <!-- Tombol Aksi di Halaman Sukses -->
+            <div class="space-y-2 no-print">
+                <button onclick="window.print()" class="w-full bg-slate-800 hover:bg-slate-900 active:scale-[0.98] text-white font-semibold text-sm py-3.5 rounded-2xl shadow-md transition-all duration-200">
+                    🖨️ Cetak / Simpan PDF
+                </button>
+                <button onclick="resetToForm()" class="w-full bg-rose-400 hover:bg-rose-500 active:scale-[0.98] text-white font-semibold text-sm py-3.5 rounded-2xl shadow-md shadow-rose-400/20 transition-all duration-200">
+                    Buat Reservasi Baru
+                </button>
+            </div>
         </div>
 
     </div>
 
     <!-- Footer di bawah kartu -->
-    <footer class="text-center text-xs text-slate-500 font-medium">
+    <footer class="text-center text-xs text-slate-500 font-medium no-print">
         &copy; 2026 by HRD-GA Dept
     </footer>
 
@@ -178,7 +227,6 @@
                 return;
             }
 
-            // Validasi NIK harus tepat 9 digit
             if (nik.length !== 9 || isNaN(nik)) {
                 alert('NIK harus diisi lengkap sebanyak 9 digit angka!');
                 return;
@@ -196,6 +244,24 @@
             document.getElementById('namaInput').value = '';
             document.getElementById('formSection').classList.add('hidden');
             document.getElementById('loginSection').classList.remove('hidden');
+        }
+
+        // Fungsi menampilkan email otomatis saat departemen dipilih
+        function updateDeptEmail() {
+            const select = document.getElementById('departemenInput');
+            const selectedOption = select.options[select.selectedIndex];
+            const email = selectedOption.getAttribute('data-email') || '';
+            const emailInfo = document.getElementById('emailInfoContainer');
+            const displayEmail = document.getElementById('displayEmailDept');
+
+            document.getElementById('emailDeptInput').value = email;
+
+            if (email) {
+                displayEmail.innerText = email;
+                emailInfo.classList.remove('hidden');
+            } else {
+                emailInfo.classList.add('hidden');
+            }
         }
 
         function switchCategory(category) {
@@ -218,30 +284,34 @@
         }
 
         function submitData() {
-            const departemen = document.getElementById('departemenInput').value.trim();
+            const departemenSelect = document.getElementById('departemenInput');
+            const departemen = departemenSelect.value.trim();
 
-            // Validasi Departemen wajib diisi
             if (!departemen) {
-                alert('Nama Departemen wajib diisi terlebih dahulu!');
-                document.getElementById('departemenInput').focus();
+                alert('Silakan pilih Departemen terlebih dahulu!');
+                departemenSelect.focus();
                 return;
             }
+
+            const emailDept = document.getElementById('emailDeptInput').value;
 
             const btn = document.getElementById('submitBtn');
             btn.disabled = true;
             btn.innerText = 'Memproses...';
 
-            // Ambil nilai Qty
             const coklat = document.getElementById('qtyCoklat').value || 0;
             const straw = document.getElementById('qtyStraw').value || 0;
             const orig = document.getElementById('qtyOrig').value || 0;
             const aqua250 = document.getElementById('qtyAqua250').value || 0;
             const aqua700 = document.getElementById('qtyAqua700').value || 0;
+            const nikVal = document.getElementById('displayNik').innerText;
+            const namaVal = document.getElementById('displayName').innerText;
 
             const payload = {
-                nik: document.getElementById('displayNik').innerText,
-                nama: document.getElementById('displayName').innerText,
+                nik: nikVal,
+                nama: namaVal,
                 departemen: departemen,
+                emailDept: emailDept,
                 milkuCoklat: coklat,
                 milkuStraw: straw,
                 milkuOrig: orig,
@@ -249,7 +319,7 @@
                 aquviva700: aqua700
             };
 
-            const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxvShxC7sx51bjWRXIWInTKdTWXCtLbAgDwlb0OzZ7b8UegTs0QLSyUu4JvFmq0s1oqSw/exec';
+            const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwI_M7oQLiLGmDCf5Nh-ZrSzCsAet2DzOni_L8_NM7L-hWm85fOeYLWP-d-J7smDu9ftw/exec';
 
             fetch(WEB_APP_URL, {
                 method: 'POST',
@@ -264,7 +334,10 @@
                 btn.innerText = 'Kirim Reservasi';
                 
                 // Masukkan data ke tampilan ringkasan sukses
+                document.getElementById('resNama').innerText = namaVal;
+                document.getElementById('resNik').innerText = nikVal;
                 document.getElementById('resDept').innerText = departemen;
+                document.getElementById('resEmail').innerText = emailDept;
                 document.getElementById('resCoklat').innerText = coklat;
                 document.getElementById('resStraw').innerText = straw;
                 document.getElementById('resOrig').innerText = orig;
@@ -283,16 +356,16 @@
         }
 
         function resetToForm() {
-            // Reset input form
             document.getElementById('departemenInput').value = '';
+            document.getElementById('emailInfoContainer').classList.add('hidden');
+            document.getElementById('emailDeptInput').value = '';
             document.getElementById('qtyCoklat').value = '0';
             document.getElementById('qtyStraw').value = '0';
             document.getElementById('qtyOrig').value = '0';
             document.getElementById('qtyAqua250').value = '0';
             document.getElementById('qtyAqua700').value = '0';
-            switchCategory('milku'); // Kembali ke tab Milku
+            switchCategory('milku');
 
-            // Sembunyikan sukses, tampilkan kembali form input
             document.getElementById('successSection').classList.add('hidden');
             document.getElementById('formSection').classList.remove('hidden');
         }
