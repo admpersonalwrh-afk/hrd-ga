@@ -24,6 +24,7 @@
                 background: white !important;
                 color: black !important;
                 display: block !important;
+                padding: 0 !important;
             }
             .no-print, button, footer, #loginSection, #formSection {
                 display: none !important;
@@ -32,7 +33,15 @@
                 display: block !important;
                 border: none !important;
                 box-shadow: none !important;
-                padding: 0 !important;
+                padding: 10px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            .print-footer {
+                display: block !important;
+                margin-top: 40px;
+                text-align: right;
+                font-size: 11px;
             }
         }
     </style>
@@ -149,12 +158,20 @@
 
         <!-- Bagian Sukses / Konfirmasi (Hidden Default) -->
         <div id="successSection" class="hidden text-center space-y-4">
+            
+            <!-- Header khusus untuk cetak/PDF (Menampilkan Logo MIM & Judul Resmi) -->
+            <div class="flex flex-col items-center pb-3 border-b-2 border-slate-800 mb-3">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpjjQ0KG8XLk69cJr3Es786wKiB3ug-v46kmbatp05O_-Lop7co52YEUvS&s=10" alt="Logo MIM" class="w-12 h-12 object-contain rounded-xl mb-1">
+                <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide">PT Multi Indomandiri</h3>
+                <p class="text-[11px] font-semibold text-slate-600 uppercase">HRD-GA Department — Bukti Reservasi Nutrisi</p>
+            </div>
+
             <div class="flex justify-center no-print">
                 <div class="w-16 h-16 bg-emerald-100 text-emerald-500 rounded-full flex items-center justify-center text-3xl shadow-sm border border-emerald-200 animate-bounce">
                     ✓
                 </div>
             </div>
-            <div>
+            <div class="no-print">
                 <h2 class="text-base font-bold text-slate-800">Reservasi Berhasil & Siap Dicetak!</h2>
                 <p class="text-xs text-slate-500 mt-0.5">Berikut rincian bukti reservasi nutrisi Anda:</p>
             </div>
@@ -199,8 +216,24 @@
                 </div>
             </div>
 
+            <!-- Footer Tanda Tangan / Validasi Khusus Cetak -->
+            <div class="print-footer hidden pt-8 text-xs">
+                <div class="flex justify-between px-4">
+                    <div class="text-center">
+                        <p class="mb-12">Diajukan oleh,</p>
+                        <p class="font-bold underline" id="printNamaPemohon"></p>
+                        <p class="text-[10px] text-slate-500">Pemohon</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="mb-12">Mengetahui,</p>
+                        <p class="font-bold underline">HRD-GA / Dept Head</p>
+                        <p class="text-[10px] text-slate-500">Verifikasi</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Tombol Aksi di Halaman Sukses -->
-            <div class="space-y-2 no-print">
+            <div class="space-y-2 no-print pt-2">
                 <button onclick="window.print()" class="w-full bg-slate-800 hover:bg-slate-900 active:scale-[0.98] text-white font-semibold text-sm py-3.5 rounded-2xl shadow-md transition-all duration-200">
                     🖨️ Cetak / Simpan PDF
                 </button>
@@ -343,6 +376,7 @@
                 document.getElementById('resOrig').innerText = orig;
                 document.getElementById('resAqua250').innerText = aqua250;
                 document.getElementById('resAqua700').innerText = aqua700;
+                document.getElementById('printNamaPemohon').innerText = namaVal;
 
                 // Sembunyikan form, tampilkan bagian sukses
                 document.getElementById('formSection').classList.add('hidden');
